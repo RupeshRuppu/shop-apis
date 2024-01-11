@@ -7,6 +7,8 @@ from datetime import datetime
 
 
 class MasterProducts(models.Model):
+    gender_choice = [("M", "MALE"), ("F", "FEMALE"), ("K", "KIDS")]
+
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     title = models.CharField(max_length=500, null=False)
     price = models.FloatField(null=False)
@@ -18,6 +20,9 @@ class MasterProducts(models.Model):
     size = models.FloatField(null=False)
     color = models.CharField(max_length=50, null=False)
     category = models.CharField(max_length=50, null=False)
+    gender = models.CharField(
+        max_length=10, null=True, blank=True, choices=gender_choice
+    )
 
     class Meta:
         db_table = "master_products"
